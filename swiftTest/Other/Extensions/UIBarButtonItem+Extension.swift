@@ -1,9 +1,9 @@
 //
 //  UIBarButtonItem+Extension.swift
-//  Weibo11
 //
-//  Created by itheima on 15/12/5.
-//  Copyright © 2015年 itheima. All rights reserved.
+//
+//  Created by Mac on 15/12/5.
+//  Copyright © 2015年 Mac. All rights reserved.
 //
 
 import UIKit
@@ -16,25 +16,18 @@ let ItemTitleColor: UIColor = UIColor(white: 80 / 255, alpha: 1)
 extension UIBarButtonItem{
     
     
-    convenience init(imgName: String? = nil, title: String? = nil, target: AnyObject?, action: Selector) {
+    convenience init(target: AnyObject?, action: Selector,imgName: String? = nil,HimgName: String? = nil) {
         self.init()
         
         let button = UIButton()
         // 添加点击事件
-        button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        button.addTarget(target, action: action, for: .touchUpInside)
         
-        if let img = imgName {
-            // 设置不同状态的图片
-            button.setImage(UIImage(named: img), forState: UIControlState.Normal)
-            button.setImage(UIImage(named: "\(img)_highlighted"), forState: UIControlState.Highlighted)
-        }
         
-        if let t = title {
-            button.setTitle(t, forState: .Normal)
-            button.setTitleColor(ItemTitleColor, forState: .Normal)
-            button.setTitleColor(UIColor.orangeColor(), forState: .Highlighted)
-            button.titleLabel?.font = UIFont.systemFontOfSize(ItemTitleFontSize)
-        }
+        button.setImage(UIImage(named: imgName!), for: .normal)
+        button.setImage(UIImage(named: HimgName!), for: .highlighted)
+        
+        
         
         // 设置大小
         button.sizeToFit()
